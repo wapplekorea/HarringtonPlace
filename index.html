@@ -721,6 +721,17 @@ footer {
 
   input::placeholder, textarea::placeholder, select { color: #fff; opacity: 1; }
   input, textarea { color: #fff; }
+
+  /* 개인정보 처리방침 모달 */
+  #privacy-modal{position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:9999;display:none;align-items:center;justify-content:center;padding:20px}
+  #privacy-modal.open{display:flex}
+  #privacy-modal .pm-box{background:#0d1b14;border:1px solid rgba(198,161,91,.25);border-radius:20px;padding:40px 48px;max-width:680px;width:100%;max-height:85vh;overflow-y:auto;color:#d8e4dc;position:relative}
+  #privacy-modal h2{font-size:22px;color:#fff;margin:0 0 24px;padding-bottom:16px;border-bottom:1px solid rgba(255,255,255,.1)}
+  #privacy-modal h3{font-size:14px;font-weight:900;color:#c6a15b;letter-spacing:.08em;margin:20px 0 6px}
+  #privacy-modal p{font-size:14px;line-height:1.75;margin:0 0 4px;color:#b0c4bc}
+  #privacy-modal .pm-close{position:absolute;top:16px;right:20px;background:none;border:none;color:#fff;font-size:22px;cursor:pointer;line-height:1}
+  @media(max-width:600px){#privacy-modal .pm-box{padding:28px 20px}}
+
 </style>
 </head>
 <body>
@@ -1426,7 +1437,7 @@ footer {
         온라인 대행. ㈜더피알커뮤니케이션 | 사업자등록번호: 101-86-52182<br>
         시행수탁. 한국투자부동산신탁㈜ | 사업자등록번호: 250-35-01440 | 대전광역시 중구 용두동 722 일원
       </div>
-      <div class="footer-copy">COPYRIGHT © 해링턴플레이스오룡역. ALL RIGHTS RESERVED.</div>
+      <div class="footer-copy">COPYRIGHT © 해링턴플레이스오룡역. ALL RIGHTS RESERVED. &nbsp;|&nbsp; <a href="#" onclick="event.preventDefault();document.getElementById('privacy-modal').classList.add('open')" style="color:inherit;text-decoration:underline;text-underline-offset:3px">개인정보 처리방침</a></div>
     </div>
   </div>
 </footer>
@@ -1510,5 +1521,35 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
   });
 });
 </script>
+
+  <!-- 개인정보 처리방침 모달 -->
+  <div id="privacy-modal" role="dialog" aria-modal="true" aria-label="개인정보 처리방침">
+    <div class="pm-box">
+      <button class="pm-close" onclick="document.getElementById('privacy-modal').classList.remove('open')" aria-label="닫기">✕</button>
+      <h2>개인정보 처리방침</h2>
+      <p>본 홈페이지 운영사(이하 "회사")는 해링턴 플레이스 오룡역 분양 상담 서비스 운영을 위해 아래와 같이 개인정보를 처리합니다.</p>
+
+      <h3>1. 수집하는 개인정보 항목</h3>
+      <p>성명, 연락처, 거주지역, 관심평형, 구입목적, 연락가능시간</p>
+
+      <h3>2. 수집 및 이용 목적</h3>
+      <p>분양 상담 안내, 방문예약 접수, 분양 관련 정보 제공</p>
+
+      <h3>3. 보유 및 이용 기간</h3>
+      <p>분양 완료 시까지. 단, 관계 법령에 따라 보존이 필요한 경우 해당 기간 보유합니다.</p>
+
+      <h3>4. 제3자 제공</h3>
+      <p>원칙적으로 수집한 개인정보를 제3자에게 제공하지 않습니다.</p>
+
+      <h3>5. 정보주체의 권리</h3>
+      <p>본인의 개인정보에 대한 열람·정정·삭제·처리정지를 요청할 수 있습니다.<br>문의: 1800-3688</p>
+    </div>
+  </div>
+  <script>
+    document.getElementById('privacy-modal').addEventListener('click', function(e){
+      if(e.target===this) this.classList.remove('open');
+    });
+  </script>
+
 </body>
 </html>
