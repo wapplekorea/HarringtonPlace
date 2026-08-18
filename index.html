@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
 <script type="text/javascript" src="//wcs.naver.net/wcslog.js"></script>
-<script type="text/javascript">if(!wcs_add)var wcs_add={};wcs_add["wa"]="s_7702f2a22f9";if(!_nasa)var _nasa={};if(window.wcs){wcs.inflow();wcs_do();}</script>
+<script type="text/javascript">if(!wcs_add)var wcs_add={};wcs_add["wa"]="s_7702f2a22f9";if(!_nasa)var _nasa={};if(window.wcs){wcs.inflow("wapplekorea.github.io/HarringtonPlace");wcs_do();}</script>
 <!-- 네이버 파워링크 클릭 어뷰징 방지 -->
 <script>
 (function(){
@@ -77,6 +77,23 @@
       .then(function(d){showPopup(d.ip);})
       .catch(function(){showPopup('확인불가');});
   });
+})();
+</script>
+<script>
+(function(){
+  var moving=false;
+  document.addEventListener('click',function(event){
+    var link=event.target.closest&&event.target.closest('a[href^="tel:"]');
+    if(!link||moving)return;
+    event.preventDefault();
+    moving=true;
+    try{
+      if(window.wcs&&typeof wcs.trans==='function'){
+        wcs.trans({type:'lead',id:'phone-'+Date.now()});
+      }
+    }catch(error){}
+    setTimeout(function(){window.location.href=link.href;},250);
+  },true);
 })();
 </script>
 <meta charset="UTF-8">
